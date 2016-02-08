@@ -1,0 +1,59 @@
+﻿Sub ScienceⅡ()
+Randomize
+Dim r As Long
+Dim MyRtn As String
+Dim Read As String
+Dim Sign As String
+
+r = Int(Rnd * 111) + 2
+Read = Worksheets("Basis").Cells(r, 3).Value
+Sign = Worksheets("Basis").Cells(r, 2).Value
+MyRtn = InputBox(Read & "を記号に変換して下さい。", "周期表クイズ")
+
+If StrPtr(MyRtn) = 0 Then
+ThisWorkbook.Saved = True
+Application.Quit
+ThisWorkbook.Close False
+End If
+
+If vbOK Then
+Select Case MyRtn
+Case ""
+MyRtn = MsgBox("次は回答しましょう!", vbRetryCancel, "クイズ結果")
+
+If MyRtn = vbCancel Then
+ThisWorkbook.Saved = True
+Application.Quit
+ThisWorkbook.Close False
+End If
+If MyRtn = vbRetry Then
+Application.Run "Module2.ScienceⅡ"
+End If
+
+Case Sign
+MyRtn = MsgBox("正解です。", vbRetryCancel, "クイズ結果")
+
+If MyRtn = vbCancel Then
+ThisWorkbook.Saved = True
+Application.Quit
+ThisWorkbook.Close False
+End If
+If MyRtn = vbRetry Then
+Application.Run "Module2.ScienceⅡ"
+End If
+
+Case Else
+MyRtn = MsgBox("残念　不正解です。正解は" & Sign & "です。", vbRetryCancel, "クイズ結果")
+
+If MyRtn = vbCancel Then
+ThisWorkbook.Saved = True
+Application.Quit
+ThisWorkbook.Close False
+End If
+If MyRtn = vbRetry Then
+Application.Run "Module2.ScienceⅡ"
+End If
+
+End Select
+End If
+End Sub

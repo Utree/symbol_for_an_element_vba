@@ -1,0 +1,20 @@
+﻿Private Sub Workbook_Open()
+Dim MyRtn As String
+
+MyRtn = MsgBox("読みに変換クイズなら「はい」" & vbCrLf & "記号に変換クイズなら「いいえ」" & vbCrLf & "終了するなら「キャンセル」を押して下さい。", vbYesNoCancel, "スタートの確認 ")
+
+If MyRtn = vbCancel Then
+ThisWorkbook.Saved = True
+Application.Quit
+ThisWorkbook.Close False
+End If
+
+If MyRtn = vbYes Then
+Application.Run "Module1.ScienceⅠ"
+End If
+
+If MyRtn = vbNo Then
+Application.Run "Module2.ScienceⅡ"
+End If
+
+End Sub
